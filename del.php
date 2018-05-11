@@ -38,7 +38,7 @@ foreach($users['list'] as $user) {
         $da_name_list[] = $sub_domain[0];
     }
 }
-array_merge($da_name_list,$important_domain);
+$da_name_list = array_merge($da_name_list,$important_domain);
 print_r($da_name_list);
 
 //$cf_name_list: get all the secondary domain name;
