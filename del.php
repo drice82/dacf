@@ -47,7 +47,14 @@ foreach ($dns->listRecords($zoneID)->result as $record) {
  	$get_result = $record->name;
 	if (preg_match($regex, $get_result, $sub_domain)){
 	    $name_value = $sub_domain[0];
-		$cf_name_list[] = $name_value;
+	    foreach ($dns->listRecords($zoneID)->result as $record) {
+                if ($record->name == 'ncs01.team-disk.com'){
+                    $record_id = $record->id;
+                    if ($dns->deleteRecord($zoneID, $record_id)) {
+                        echo "DNS record deleted.". PHP_EOL;
+                    }
+                }
+            }
 	}
 }
 //print_r($cf_name_list);
