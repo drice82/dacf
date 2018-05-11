@@ -38,6 +38,7 @@ foreach($users['list'] as $user) {
         $da_name_list[] = $sub_domain[0];
     }
 }
+array_merge($da_name_list,$important_domain);
 print_r($da_name_list);
 
 //$cf_name_list: get all the secondary domain name;
@@ -50,7 +51,7 @@ foreach ($dns->listRecords($zoneID)->result as $record) {
 	    if (!(in_array($name_value, $da_name_list))){
                 $record_id = $record->id;
                 if ($dns->deleteRecord($zoneID, $record_id)) {
-                    echo "DNS record deleted.". PHP_EOL;
+                    echo "DNS record deleted.". "<br />";
                 }
             }
 	}
