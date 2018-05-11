@@ -15,10 +15,10 @@ $dns = new \Cloudflare\API\Endpoints\DNS($adapter);
 $cf_name_list = array();
 foreach ($dns->listRecords($zoneID)->result as $record) {
 	$regex = '/.+(?=\.team-disk\.com)/';
-    
+ 	$get_result = $record->name;
 	if (preg_match($regex, $get_result, $sub_domain)){
-        $name_value = $sub_domain[0];
+	        $name_value = $sub_domain[0];
 		$cf_name_list[] = $name_value;
 	}
 }
-print_r($cf_name_list);
+//print_r($cf_name_list);
