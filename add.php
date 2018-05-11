@@ -13,8 +13,9 @@ $dns = new \Cloudflare\API\Endpoints\DNS($adapter);
 
 $cf_name_list = array();
 foreach ($dns->listRecords($zoneID)->result as $record) {
-    $cf_domain_name[] = $record->name;
+    $cf_name_list[] = $record->name;
 }
+print_r($cf_name_list);
 //$cf_name_list: get all the secondary domain name;
 
 //get DA domain into 
