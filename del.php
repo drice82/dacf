@@ -51,7 +51,7 @@ foreach ($dns->listRecords($zoneID)->result as $record) {
 	    if (!(in_array($name_value, $da_name_list))){
                 $record_id = $record->id;
                 if ($dns->deleteRecord($zoneID, $record_id)) {
-                    echo "DNS record deleted.". "<br />";
+                    echo $name_value . " DNS record deleted.". "<br />";
                 }
             }
 	}
