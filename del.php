@@ -41,18 +41,16 @@ foreach($users['list'] as $user) {
 print_r($da_name_list);
 
 //$cf_name_list: get all the secondary domain name;
-$cf_name_list = array();
+//$cf_name_list = array();
 foreach ($dns->listRecords($zoneID)->result as $record) {
 	$regex = '/.+(?=\.team-disk\.com)/';
  	$get_result = $record->name;
 	if (preg_match($regex, $get_result, $sub_domain)){
 	    $name_value = $sub_domain[0];
-	    foreach ($dns->listRecords($zoneID)->result as $record) {
-                if ($record->name == ($name_value . '.team-disk.com')){
-                    $record_id = $record->id;
-                    if ($dns->deleteRecord($zoneID, $record_id)) {
-                        echo "DNS record deleted.". PHP_EOL;
-                    }
+	    if (!(in_array($name_value, $da_name_list))){
+                $record_id = $record->id;
+                if ($dns->deleteRecord($zoneID, $record_id)) {
+                    echo "DNS record deleted.". PHP_EOL;
                 }
             }
 	}
