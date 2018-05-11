@@ -45,7 +45,7 @@ foreach($users['list'] as $user) {
         $name_value = $sub_domain[0];
 	if (!(in_array($name_value . '.team-disk.com', $cf_name_list))){
    	    if ($dns->addRecord($zoneID, "A", $name_value , $da_ip , 0, true) === true) {
-	        echo "DNS record created.". PHP_EOL;
+	        echo $name_value . "DNS record created.". PHP_EOL;
 	    }
 		//add A record
 
