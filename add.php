@@ -39,9 +39,9 @@ foreach($users['list'] as $user) {
     $domains=$sock->fetch_parsed_body();
     $regex = '/.+(?=_team-disk_com)/';
     $get_result = array_keys($domains)[0];
-    //$sub_domain = array();
+    $sub_domain = array();
     if (preg_match($regex, $get_result, $sub_domain)){
-        echo $sub_domain;
+        echo $sub_domain[0];
 	  }
   
 }
