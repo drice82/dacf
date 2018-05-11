@@ -42,6 +42,10 @@ foreach($users['list'] as $user) {
     $sub_domain = array();
     if (preg_match($regex, $get_result, $sub_domain)){
         echo $sub_domain[0];
-	  }
+	if array_key_exists($sub_domain[0],$cf_name_list){
+	    echo "add". PHP_EOL;	
+	}
+	
+    }
   
 }
