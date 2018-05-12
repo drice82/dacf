@@ -38,6 +38,7 @@ foreach($users['list'] as $user) {
         $da_name_list[] = $sub_domain[0];
     }
 }
+if (count($da_name_list) < 5) {die('too less');}
 $da_name_list = array_merge($da_name_list,$important_domain);
 print_r($da_name_list);
 
