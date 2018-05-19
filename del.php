@@ -31,11 +31,12 @@ foreach($users['list'] as $user) {
     );
 
     $domains=$sock->fetch_parsed_body();
-    $regex = '/.+(?=_team-disk_com)/';
-    $get_result = array_keys($domains)[0];
-    $sub_domain = array();
-    if (preg_match($regex, $get_result, $sub_domain)){
-        $da_name_list[] = $sub_domain[0];
+    foreach(array_keys($domains) as $domains2){
+	    $regex = '/.+(?=_team-disk_com)/';
+	    $get_result = $domains2;
+	    if (preg_match($regex, $get_result, $sub_domain)){
+	        $da_name_list[] = $sub_domain[0];
+	    }
     }
 }
 if (count($da_name_list) < 5) {die('too less');}
