@@ -38,17 +38,18 @@ foreach($users['list'] as $user) {
     );
 
     $domains=$sock->fetch_parsed_body();
-    $regex = '/.+(?=_team-disk_com)/';
-    $get_result = array_keys($domains)[0];
-    $sub_domain = array();
-    if (preg_match($regex, $get_result, $sub_domain)){
-        $name_value = $sub_domain[0];
-	if (!(in_array($name_value . '.team-disk.com', $cf_name_list))){
-   	    if ($dns->addRecord($zoneID, "A", $name_value , $da_ip , 0, true) === true) {
-	        echo $name_value . "DNS record created.". PHP_EOL;
-	    }
+	foreach (array_keys($domains) as $domains2){
+	    $regex = '/.+(?=_team-disk_com)/';
+	    $get_result = $domains2;
+//    $sub_domain = array();
+	    if (preg_match($regex, $get_result, $sub_domain)){
+        	$name_value = $sub_domain[0];
+		if (!(in_array($name_value . '.team-disk.com', $cf_name_list))){
+	   	    if ($dns->addRecord($zoneID, "A", $name_value , $da_ip , 0, true) === true) {
+		        echo $name_value . "DNS record created.". PHP_EOL;
+		    }
 		//add A record
-
+	    }
 	}
 	
     }
